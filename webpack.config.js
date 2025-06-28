@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
     clean: true,
   },
   resolve: {
@@ -15,42 +15,35 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
         exclude: /node_modules/,
+        use: 'ts-loader',
       },
       {
-        test: /\.module\.s?css$/,
+        test: /\.scss$/,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
-            options: { modules: true }
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
           },
-          'sass-loader'
-        ]
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: './public/index.html',
     }),
   ],
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    historyApiFallback: true,
-    port: 3001,
-    open: true,
-    proxy: [
-      {
-        context: ['/pragmatic/game'],
-        target: 'https://belparyaj.com',
-        changeOrigin: true,
-        secure: false,
-      },
-    ],
-  },
-  mode: 'development',
-}; 
+};
