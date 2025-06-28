@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[contenthash].js',
-    clean: true,
+    filename: 'static/js/[name].[contenthash].js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -21,16 +22,8 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                auto: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-          },
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           'postcss-loader',
           'sass-loader',
         ],
@@ -38,12 +31,19 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'static/media/[name].[hash][ext]',
+        },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash].css',
     }),
   ],
 };
