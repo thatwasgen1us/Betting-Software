@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+select,
+input {
+  box-sizing: border-box;
+  height: 40px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  border: 1px solid rgb(186, 142, 71);
+  color: #fff;
+}
+
+select {
+  width: 140px;
+  padding: 12px 30px 12px 20px;
+  background: rgb(31, 31, 31);
+  appearance: none;
+  background-image: url('/src/assets/Arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+input {
+  width: 230px;
+  padding: 10px 15px 10px 50px;
+  border-radius: 85px;
+  border-color: rgba(182, 186, 213, 0.2);
+  background-repeat: no-repeat;
+  background-image: url('/src/assets/Search.svg');
+  background-position: left 15px center;
+  background-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  height: 110vh;
+}
+
+.top-menu {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  align-items: center;
+  gap: 10px;
+  height: 80px;
+  margin-bottom: 25px;
+}
+
+.filter-container,
+.input-container {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-radius: 10px;
+  background-color: #1c1c1c;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+}
+
+.search-button {
+  width: 94px;
+  height: 40px;
+  padding: 10px 20px;
+  background: rgb(240, 218, 125);
+  color: rgb(27, 2, 14);
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -10px;
+}
+
+/* Cards grid */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Utility */
+.pragmatic {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.game-card {
+  width: 200px;
+  text-align: 'center';
+  background: '#fff';
+  border-radius: 8;
+  box-shadow: '0 2px 8px #0001';
+  padding: 8px;
+}
+
+.game-img {
+  width: 190px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.card-name {
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 10px;
+}
